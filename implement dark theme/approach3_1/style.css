@@ -1,0 +1,77 @@
+/* set light theme colours as default */
+:root {
+    --bg-colour: #fafafa; 
+    --font-colour: #212529;
+    --primary-colour:  #2196f3;
+    --link-colour: #2962ff;
+    --alt-contrast-colour: #fff;
+}
+
+body {
+    background-color: var(--bg-colour);
+    color: var(--font-colour);
+}
+
+img {
+    height: 200px;
+}
+
+a {
+    color: var(--link-colour);
+}
+
+a:hover {
+    color: var(--link-colour);
+}
+
+button {
+    display: inline-block;
+    font-weight: 400;
+    line-height: 1.5;
+    color: var(--bg-colour);
+    text-align: center;
+    text-decoration: none;
+    vertical-align: middle;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+    background-color: var(--font-colour);
+    border: 1px solid transparent;
+    border-color: var(--light-font);
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    border-radius: 0.25rem;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+button.outline-btn {
+    color: var(--font-colour);
+    background-color: var(--bg-colour);
+    border-color: var(--font-colour);
+}
+
+button.outline-btn:hover {
+    color: var(--bg-colour);
+    background-color: var(--font-colour);
+}
+
+.card {
+    border: 1px solid var(--alt-contrast-colour);
+}
+
+.card-body {
+    background-color: var(--alt-contrast-colour);
+}
+
+.text-muted {
+    color: var(--font-colour) !important;
+  }
+
+a.btn > i {
+    color: var(--font-colour);
+}
+
+a.btn > i:hover {
+    color: var(--primary-colour);
+}
