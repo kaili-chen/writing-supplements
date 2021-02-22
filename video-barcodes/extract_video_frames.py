@@ -1,7 +1,7 @@
 import os
 import cv2
 
-def extract_frames(path_in):
+def extract_video_frames(path_in):
     '''
     Gets frames from video file as images (1 frame per second).
 
@@ -18,11 +18,6 @@ def extract_frames(path_in):
     path_out = video_name   # set path_out to be returned later
 
     vidcap = cv2.VideoCapture(path_in)  # open video file sequence
-
-    # fps = vidcap.get(cv2.CAP_PROP_FPS)      # OpenCV2 version 2 used "CV_CAP_PROP_FPS"
-    # frame_count = int(vidcap.get(cv2.CAP_PROP_FRAME_COUNT))
-    # duration = frame_count/fps
-    # print('fps: {}\nframe count: {}\nduration: {}'.format(fps, frame_count, duration))
 
     count = 0
     success = True
