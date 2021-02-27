@@ -1,9 +1,10 @@
 from extract_video_frames import *
 from make_barcode import *
 
-try:
-    frames_dir = extract_video_frames('opening.mp4')
-except FileExistsError:
-    # extract video frames not run, dir already exists
-    frames_dir='opening frames'
-barcode = make_barcode(frames_dir, bar_width=2, dims=(300,300))
+videopath = 'video.mp4'
+
+if os.path.exists(videopath):
+    frames_dir = extract_video_frames(videopath)
+    barcode = make_barcode(frames_dir, bar_width=20, dims=(1920,1080))
+else:
+    print('ERROR: video file does not exist')

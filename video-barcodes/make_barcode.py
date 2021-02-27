@@ -44,6 +44,7 @@ def make_barcode(frames_dir, bar_width=1, dims=None):
 
     if dims:    # resize if there are values for dimensions
         barcode = cv2.resize(barcode, dims, interpolation = cv2.INTER_AREA)
+        filename = "barcode{}x{}.png".format(dims[0], dims[1])  # adds input dimensions to filename
     
     cv2.imwrite(filename, barcode)
 
