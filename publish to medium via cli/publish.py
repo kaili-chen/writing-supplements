@@ -1,4 +1,5 @@
 import requests
+import pathlib
 import argparse
 import subprocess
 
@@ -18,15 +19,12 @@ headers = {
 
 def read_file(filepath):
     '''reads file from input filepath and returns a dict with the file content and contentFormat for the publish payload'''
-    f = open(filepath, 'r')
-    content = f.read()
-    if not f.closed: f.close()
+    with open(filepath, 'r') as f:
+        content = process_markdown(f.read())
 
-    if filepath.find('.') < 0:
-        file_ext = ""
-    else:
-        file_ext = filepath[filepath.find(".")+1:]
-    if file_ext == "md": file_ext = "markdown"
+    # Get file extension
+    file_ext = pathlib.Path(filepath).suffix
+    file_ext = "markdown" if file_ext == "md" else file_ext
     return {"content": content, "contentFormat": file_ext}
 
 def prep_data(args):
@@ -37,9 +35,7 @@ def prep_data(args):
     data = {**data, **read_file(args['filepath'])}
     if args['tags']:
         data['tags'] = [t.strip() for t in args['tags'].split(',')]
-    data['publishStatus'] = 'draft'
-    if args['pub']:
-        data['publishStatus'] = args['pub']
+    data['publishStatus'] = args.get('pub', 'draft')
     return data
 
 def get_author_id():
@@ -75,7 +71,7 @@ if __name__ == "__main__":
     parser.add_argument('filepath') # positional argument
     parser.add_argument('-t', '--title', required=True, help="title of post", type=str) # named argument
 
-    # add compulsory arguments
+    # add optional arguments
     parser.add_argument('-a', '--tags', required=False, help="tags, separated by ,", type=str)
     parser.add_argument('-p', '--pub', required=False, help="publish status, one of draft/unlisted/public, defaults to draft", type=str, choices=["public", "unlisted", "draft"])
 
