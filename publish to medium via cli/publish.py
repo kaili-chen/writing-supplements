@@ -19,7 +19,6 @@ headers = {
 
 def read_file(filepath):
     '''reads file from input filepath and returns a dict with the file content and contentFormat for the publish payload'''
-    f = open(filepath, 'r')
     with open(filepath, 'r') as f:
         content = process_markdown(f.read())
 
