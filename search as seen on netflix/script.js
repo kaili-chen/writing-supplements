@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
     // set the page's base url
     const pageUrl = window.location.href;
+    window.history.pushState(null, null, pageUrl);    // set initial history entry
     const queryElm = document.getElementById('query');  // query text input element
     const resultsElm = document.getElementById('results');
     const DATA = [
